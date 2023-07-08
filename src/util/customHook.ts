@@ -1,7 +1,12 @@
+import { useContext } from "react";
+import { RouterContext } from "./RouterContext";
+
 export default function useRouter() {
-  const push = (path: string) => {
-    window.history.pushState(null, "", path);
-    window.dispatchEvent(new PopStateEvent("popstate"));
+  const { path, changePath } = useContext(RouterContext);
+
+  const push = (nextPath: string) => {
+    if (path === nextPath) return;
+    changePath(nextPath);
   };
   return { push };
 }

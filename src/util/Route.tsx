@@ -1,26 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 type Props = {
   path: string;
   component: React.ReactNode;
 };
 
-function Route({ path, component }: Props) {
-  const [state, setState] = useState(window.location.pathname);
-
-  useEffect(() => {
-    const handlePopState = () => {
-      setState(window.location.pathname);
-    };
-
-    window.addEventListener("popstate", handlePopState);
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, []);
-
-  return state === path && component;
-}
-
+const Route = (_: Props) => null;
 export default Route;
